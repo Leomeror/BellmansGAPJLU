@@ -5,5 +5,8 @@ Apparently github-pages doesn't support PHP (it doesn't support non-static sites
 
 That is why the index.php doesn't get executed when you load the site: https://leomeror.github.io/BellmansGAPJLU or https://leomeror.github.io/BellmansGAPJLU/index.php
 
-The site might be implemented in javascript, but (I think) that defeats the purpose of storing .gap-files on the server. 
+The gapc functionality might be implemented in javascript, but (I think) that defeats the purpose of storing .gap-files on the server. 
 
+This Repository was made public solely to host it on github-pages for testing purposes.
+
+-- Leon Metzger
