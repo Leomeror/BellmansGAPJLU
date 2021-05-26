@@ -8,5 +8,6 @@ That is why the index.php doesn't get executed when you load the site: https://l
 The gapc functionality might be implemented in javascript, but (I think) that defeats the purpose of storing .gap-files on the server. 
 
 This Repository was made public solely to host it on github-pages for testing purposes.
+Maybe it would be smarter to change it back to private.
 
 -- Leon Metzger
