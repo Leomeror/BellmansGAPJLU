@@ -67,7 +67,7 @@ if ($algebra1 == "alg_pretty") {
 
 
 Wähle aus welche Grammatik du verwenden willst.
-<select name="Grammatik">
+<select name="Grammatikdatei">
     <option value="elmamun.gap">Elmamun</option>
 </select>
 
@@ -94,10 +94,12 @@ if ($algebra == "alg_pretty") {
 }
 */
 $instance = $_GET['algebra'];
-$Grammatik = $_GET['Grammatik'];
-shell_exec("gapc -i " . $instance . " " . $Grammatik);
-shell_exec("make -f out.mf");
-$result = shell_exec("./out " . $input);
+$Grammatikdatei = $_GET['Grammatikdatei'];
+if (!file_exists($instance."gapc.cc")){
+    shell_exec("gapc -i ".$instance." -o ".$instance."gapc.cc ".$Grammatikdatei);
+}
+shell_exec("make -f ".$instance."gapc.mf");
+$result = shell_exec("./".$instance."gapc ". $input);
 echo $result;
 echo "</pre>";
 ?>
