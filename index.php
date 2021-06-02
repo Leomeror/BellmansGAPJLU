@@ -1,14 +1,101 @@
-Es wird immer elmamun.gap für die Algebra und die Grammatik benutzt.
+Es wird momentan noch immer elmamun.gap für die Algebra und die Grammatik benutzt.
 <br><br>
+
 <form action="index.php" method="get">
 Gib die Formel ein, deren Klammerstellung du mit Elmamun prüfen wilst <br> <input type="text" name="input">
+<br><br>
+Wähle die Instanz mit den Algebren die du verwenden möchtest.
+<select name="algebra">
+<option value="pp" selected>alg_pretty</option>
+<option value="enum">alg_enum</option>
+<option value="sellerpp">alg_seller * alg_pretty</option>
+<option value="buyerpp">alg_buyer * alg_pretty</option>
+<option value="ppbuyer">alg_pretty * alg_buyer</option>
+<option value="timepp">alg_time * alg_pretty</option>
+</select>
+<br><br>
+<!--
+<input type="submit">
+</form>
+-->
+
+<!--
+<p>Algebra: 
+<form action="" method="post">
+<SELECT NAME="algebra1">
+<OPTION value="alg_pretty" SELECTED>alg_pretty</OPTION><OPTION value="alg_enum">alg_enum</OPTION><OPTION value="alg_seller">alg_seller</OPTION><OPTION value="alg_buyer">alg_buyer</OPTION><OPTION value="alg_time">alg_time</OPTION>
+</SELECT>
+<input type="submit" name="submit" value="Choose.">
+</form>
+und das ist
+<?php 
+echo bla;
+$algebra1 = $_POST['algebra1']; 
+echo $algebra1;
+?>
+***
+<form action="" method=post">
+<SELECT NAME="algebra2">
+<OPTION SELECTED 
+<?php
+if ($algebra1 == "alg_pretty") {
+    echo 'value="-">"-"';
+    echo '</OPTION><OPTION value= "alg_buyer">alg_buyer';
+} elseif ($algebra1 == "alg_enum") {
+    echo 'value="-">"-"';
+} else {
+    echo 'value="alg_pretty">alg_pretty';
+}
+?>
+</OPTION></SELECT>
+<input type ="submit" name="submit" value="Choose">
+</form>
+&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=SUBMIT NAME="CommandButton1" VALUE="Go!">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+-->
+
+<!-- Instanzen in elmamun.gap:
+        instance pp = gra_elmamun(alg_pretty);
+        instance enum = gra_elmamun(alg_enum);
+        instance sellerpp = gra_elmamun(alg_seller * alg_pretty);
+        instance buyerpp = gra_elmamun(alg_buyer * alg_pretty);
+        instance ppbuyer = gra_elmamun(alg_pretty * alg_buyer);
+        instance timepp = gra_elmamun(alg_time * alg_pretty);
+-->
+
+
+Wähle aus welche Grammatik du verwenden willst.
+<select name="Grammatik">
+    <option value="elmamun.gap">Elmamun</option>
+</select>
+
 <input type="submit">
 </form>
 
 <?php
 $input = $_GET['input'];
-echo "<pre>";
-shell_exec("gapc elmamun.gap");
+echo "<pre>"; 
+/*   alter Code
+$algebra = $_GET['algebra']; 
+if ($algebra == "alg_pretty") {
+    $instance = pp;
+}   elseif ($algebra == "alg_enum") {
+    $instance = enum;
+}   elseif ($algebra == "alg_seller * alg_pretty") {
+    $instance = sellerpp;
+}   elseif ($algebra == "alg_buyer * alg_pretty") {
+    $instance = buyerpp;
+}   elseif ($algebra == "alg_pretty * alg_buyer") {
+    $instance = ppbuyer;
+}   elseif ($algebra == "alg_time * alg_pretty") {
+    $instance = timepp;
+}
+*/
+$instance = $_GET['algebra'];
+$Grammatik = $_GET['Grammatik'];
+shell_exec("gapc -i " . $instance . " " . $Grammatik);
 shell_exec("make -f out.mf");
 $result = shell_exec("./out " . $input);
 echo $result;
