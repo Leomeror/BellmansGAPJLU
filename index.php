@@ -2,16 +2,16 @@ Es wird momentan noch immer elmamun.gap für die Algebra und die Grammatik benut
 <br><br>
 
 <form action="index.php" method="get">
-Gib die Formel ein, deren Klammerstellung du mit Elmamun prüfen wilst <br> <input type="text" name="input">
+Gib die Formel ein, deren Klammerstellung du mit Elmamun prüfen wilst <br> <input type="text" name="input" value='<?php echo isset($_GET['input']) ? $_GET['input'] : '' ?>'>
 <br><br>
 Wähle die Instanz mit den Algebren die du verwenden möchtest.
 <select name="algebra">
-<option value="pp" selected>alg_pretty</option>
-<option value="enum">alg_enum</option>
-<option value="sellerpp">alg_seller * alg_pretty</option>
-<option value="buyerpp">alg_buyer * alg_pretty</option>
-<option value="ppbuyer">alg_pretty * alg_buyer</option>
-<option value="timepp">alg_time * alg_pretty</option>
+<option <?php if ($_GET['algebra'] == 'pp') { echo " selected "; };?> value="pp" >alg_pretty</option>
+<option <?php if ($_GET['algebra'] == 'enum') { echo " selected "; };?>value="enum">alg_enum</option>
+<option <?php if ($_GET['algebra'] == 'sellerpp') { echo " selected "; };?>value="sellerpp">alg_seller * alg_pretty</option>
+<option <?php if ($_GET['algebra'] == 'buyerpp') { echo " selected "; };?>value="buyerpp">alg_buyer * alg_pretty</option>
+<option <?php if ($_GET['algebra'] == 'ppbuyer') { echo " selected "; };?>value="ppbuyer">alg_pretty * alg_buyer</option>
+<option <?php if ($_GET['algebra'] == 'timepp') { echo " selected "; };?>value="timepp">alg_time * alg_pretty</option>
 </select>
 <br><br>
 <!--
