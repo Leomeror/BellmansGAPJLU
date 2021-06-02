@@ -1,4 +1,4 @@
-Es wird momentan noch immer elmamun.gap für die Algebra und die Grammatik benutzt.
+Es kann momentan nur elmamun.gap als Grammatik benutzt werden.
 <br><br>
 
 <form action="index.php" method="get">
