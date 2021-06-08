@@ -19,11 +19,11 @@ Grammar:
 <!--
     Muss Seite davon abhalten, die shell_exec Befehle auszuführen, bis der untere Submit Button gedrückt wurde. DONE
     Der obere Submit-Button soll nur das Parsen aktivieren.
-    Mi-2.6.2021-18:00-19:15 : 1 Stunde 15 min
-    Do. 3.6.2021 14:42-17:42 : 3 Stunden
-    Sa 5.6.2021 Docker-Videos 11:30-13:10 :1 Std. 40 min 
+    Mi 2.6.2021-18:00-19:15 : 1 Stunde 15 min
+    Do 3.6.2021 14:42-17:42 : 3 Stunden
+    Sa 5.6.2021 Docker-Videos 11:30-13:10 : 1 Std. 40 min 
     Sa 5.6.2021 14:00-14:20 : 20 min
-    Sa 5.6.2021 18:27 :  min
+    Sa 5.6.2021 18:27-20:12 : 1 Std. 45 min
     
 -->
 <input type="submit" name="parse" value="Parsen">
