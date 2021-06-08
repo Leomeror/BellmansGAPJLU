@@ -14,7 +14,17 @@ Durch drücken auf "Parsen" werden dir weiter unten alle möglichen Algebren zur
 Grammar:
 <select name="Grammatikdatei" >
     <option <?php if ($_SESSION['Grammatikdatei'] == '-') { echo " selected "; };?> value="-">-</option>
-    <option <?php if ($_SESSION['Grammatikdatei'] == 'elmamun.gap') { echo " selected "; };?> value="elmamun.gap">Elmamun</option>
+    <?php
+        $shellreturn = shell_exec('find . -type f -name "*.gap" -printf "%f\n"');
+        $gapfilenames = explode("\n", $shellreturn);
+        foreach($gapfilenames as $gapfilename){
+        if ($gapfilename != ""){
+            echo "<option ";
+            if ($_SESSION['Grammatikdatei'] == $gapfilename) { echo " selected "; };
+            echo 'value="'.$gapfilename.'">'.$gapfilename.'</option>';
+        }
+        }
+    ?>
 </select>
 <!--
     Muss Seite davon abhalten, die shell_exec Befehle auszuführen, bis der untere Submit Button gedrückt wurde. DONE
