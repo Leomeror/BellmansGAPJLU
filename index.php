@@ -34,6 +34,7 @@ Grammar:
     Sa 5.6.2021 Docker-Videos 11:30-13:10 : 1 Std. 40 min 
     Sa 5.6.2021 14:00-14:20 : 20 min
     Sa 5.6.2021 18:27-20:12 : 1 Std. 45 min
+    Di 8.6.2021 16:20-16:45 : 25 min
     
 -->
 <input type="submit" name="parse" value="Parsen">
@@ -161,13 +162,13 @@ echo $result;
 echo "</pre>";
 }
 
-
+//if(array_key_exists('submit',$_GET)){
 if(array_key_exists('go',$_POST)){
     //Ist unnötig, weil oben schon abgefragt:
     if($Grammatikdatei =="-"){
         $Grammatikdatei="";
     }
-    //Wenn nur eine Algebra angegeben, benutze -p mit nur Algebra1(=useGapcSingleAlgebra)
+    //Wenn nur eine Algebra angegeben, benutze -p mit nur Algebra1(also: useGapcSingleAlgebra)
     if($algebra2 == "-"){
         useGapcSingleAlgebra($algebra1, $Grammatikdatei, $input);
     }
