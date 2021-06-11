@@ -1,10 +1,21 @@
 <?php
     session_start();
+    
+    
     if(!isset($_SESSION['Grammatikdatei'])){$_SESSION['Grammatikdatei']="";}
+    
+    if(isset($algebras)){$_SESSION['algebras'] = $algebras;}
     if(!isset($_SESSION['algebras'])){$_SESSION['algebras']=["error"];}
+    
     if(!isset($_GET['Grammatikdatei'])){$_GET['Grammatikdatei']="";}
+    
+    if(isset($algebra1)){$_GET['algebra1'] = $algebra1;}
     if(!isset($_GET['algebra1'])){$_GET['algebra1']="";}
+    
+    if(isset($algebra2)){$_GET['algebra2'] = $algebra2;}
     if(!isset($_GET['algebra2'])){$_GET['algebra2']="";}
+    
+    if(isset($input)){$_GET['input'] = $input;}
     if(!isset($_GET['input'])){$_GET['input']="";}
 ?>
 Es kann momentan nur elmamun.gap als Grammatik benutzt werden.
@@ -15,14 +26,14 @@ Wähle zuerst aus welche Grammatik du verwenden willst.<br>
 Durch drücken auf "Parsen" werden dir weiter unten alle möglichen Algebren zur Auswahl angezeigt.<br>
 Grammar:
 <select name="Grammatikdatei" >
-    <option <?php if ($_SESSION['Grammatikdatei'] == '-') { echo " selected "; };?> value="-">-</option>
+    <option <?php if ($_GET['Grammatikdatei'] == '-') { echo " selected "; };?> value="-">-</option>
     <?php
-        $shellreturn = shell_exec('find . -type f -name "*.gap" -printf "%f\n"');
+        $shellreturn = shell_exec('find . -maxdepth 1 -type f -name "*.gap" -printf "%f\n"');
         $gapfilenames = explode("\n", $shellreturn);
         foreach($gapfilenames as $gapfilename){
         if ($gapfilename != ""){
             echo "<option ";
-            if ($_SESSION['Grammatikdatei'] == $gapfilename) { echo " selected "; };
+            if ($_GET['Grammatikdatei'] == $gapfilename) { echo " selected "; };
             echo 'value="'.$gapfilename.'">'.$gapfilename.'</option>';
         }
         }
@@ -44,10 +55,9 @@ Grammar:
 <?php
 
     if(!isset($_SESSION['Grammatikdatei'])){
+    if(isset($Grammatikdatei)){
     $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
-    
-    if($_SESSION['Grammatikdatei']==""){
-    $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
+    }
     
     if(isset($_GET['Grammatikdatei'])){
     $_SESSION['Grammatikdatei'] = $_GET['Grammatikdatei'];}
@@ -75,7 +85,7 @@ Grammar:
             foreach($rows as $row){
                 $row_content=explode(" ", $row);
                 if($row_content[0]=="algebra"){
-                    $algebras[] = $row_content[1];
+                    array_push($algebras, $row_content[1]);
                 }
             }
         }
@@ -118,10 +128,28 @@ Input:<input type="text" name="input" placeholder="2+1*3" value='<?php echo isse
 
 &nbsp &nbsp
 
+
+<?php
+    $Grammatikdatei = $_SESSION['Grammatikdatei'];
+    $_SESSION['Grammatikdatei'] = $Grammatikdatei;
+?>
+
+
+<input type="hidden" name="Grammatikdatei" value=<?php echo $Grammatikdatei;?>>
+
+
 <input type="submit" name="submit">
 
 </form>
 <?php
+    /*
+    $Grammatikdatei = $_GET['Grammatikdatei'];
+    $_SESSION['Grammatikdatei'] = $Grammatikdatei;
+    */
+    $Grammatikdatei = $_SESSION['Grammatikdatei'];
+    $_SESSION['Grammatikdatei'] = $Grammatikdatei;
+    
+    
     if(isset($_GET["submit"])){
         if(($_GET['input']!="")){
             echo '<span style="color:green">';
@@ -142,13 +170,10 @@ Mit Klicken auf "Submit" werden deine Einträge in der Website gespeichert.
 <br>
 Du kannst jetzt auf "RUN" klicken um alles mit dem gapc Compiler auszurechnen.
 <br>
-    <input type="submit" name="go" id="go" value="RUN" /><br/>
+    <input type="submit" name="run" id="run" value="RUN" /><br/>
 </form>
 
 <?php
-$input = $_GET['input'];
-$algebra1 = $_GET['algebra1'];
-$algebra2 = $_GET['algebra2'];
 
 function useGapcSingleAlgebra($algebra1, $Grammatikdatei, $input)
 {
@@ -176,8 +201,21 @@ echo $result;
 echo "</pre>";
 }
 
+
+$Grammatikdatei = $_SESSION['Grammatikdatei'];
+$input = $_GET['input'];
+$algebra1 = $_GET['algebra1'];
+$algebra2 = $_GET['algebra2'];
+
+/*
+echo $Grammatikdatei;
+echo $input;
+echo $algebra1;
+echo $algebra2;
+*/
+
 //if(array_key_exists('submit',$_GET)){
-if(array_key_exists('go',$_POST)){
+if(array_key_exists('run',$_POST)){
     //Ist unnötig, weil oben schon abgefragt:
     if($Grammatikdatei =="-"){
         $Grammatikdatei="";
