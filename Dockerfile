@@ -10,4 +10,5 @@ RUN apt-get -y install gpg bellmansgapc php
 
 COPY index.php .
 COPY elmamun.gap .
+WORKDIR .
 CMD [ "php", "./index.php" ]

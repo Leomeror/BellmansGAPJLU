@@ -1,13 +1,13 @@
-Es kann momentan nur elmamun.gap als Grammatik benutzt werden.
-<br><br>
 <?php
     session_start();
-    if(!isset($_SESSION['Grammatikdatei'])){
-    $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
-    
-    if(isset($_GET['Grammatikdatei'])){
-    $_SESSION['Grammatikdatei'] = $_GET['Grammatikdatei'];}
+    if(!isset($_SESSION['Grammatikdatei'])){$_SESSION['Grammatikdatei']="";}
+    if(!isset($_SESSION['algebras'])){$_SESSION['algebras']="";}
+    //if(!isset($_SESSION['Grammatikdatei'])){
+    //$_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
 ?>
+Es kann momentan nur elmamun.gap als Grammatik benutzt werden.
+<br><br>
+
 <form id="form1" action="index.php" method="get">
 Wähle zuerst aus welche Grammatik du verwenden willst.<br>
 Durch drücken auf "Parsen" werden dir weiter unten alle möglichen Algebren zur Auswahl angezeigt.<br>
@@ -35,9 +35,20 @@ Grammar:
     Sa 5.6.2021 14:00-14:20 : 20 min
     Sa 5.6.2021 18:27-20:12 : 1 Std. 45 min
     Di 8.6.2021 16:20-16:45 : 25 min
+    Fr 11.6.2021 11:32-
     
 -->
 <input type="submit" name="parse" value="Parsen">
+<?php
+    if(!isset($_SESSION['Grammatikdatei'])){
+    $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
+    
+    if($_SESSION['Grammatikdatei']==""){
+    $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
+    
+    if(isset($_GET['Grammatikdatei'])){
+    $_SESSION['Grammatikdatei'] = $_GET['Grammatikdatei'];}
+?>
 <br>
 </form>
 <?php
