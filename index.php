@@ -1,9 +1,11 @@
 <?php
     session_start();
     if(!isset($_SESSION['Grammatikdatei'])){$_SESSION['Grammatikdatei']="";}
-    if(!isset($_SESSION['algebras'])){$_SESSION['algebras']="";}
-    //if(!isset($_SESSION['Grammatikdatei'])){
-    //$_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
+    if(!isset($_SESSION['algebras'])){$_SESSION['algebras']=["error"];}
+    if(!isset($_GET['Grammatikdatei'])){$_GET['Grammatikdatei']="";}
+    if(!isset($_GET['algebra1'])){$_GET['algebra1']="";}
+    if(!isset($_GET['algebra2'])){$_GET['algebra2']="";}
+    if(!isset($_GET['input'])){$_GET['input']="";}
 ?>
 Es kann momentan nur elmamun.gap als Grammatik benutzt werden.
 <br><br>
@@ -40,6 +42,7 @@ Grammar:
 -->
 <input type="submit" name="parse" value="Parsen">
 <?php
+
     if(!isset($_SESSION['Grammatikdatei'])){
     $_SESSION['Grammatikdatei']=$_GET['Grammatikdatei'];}
     
