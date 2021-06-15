@@ -48,7 +48,7 @@ Grammar:
     Sa 5.6.2021 14:00-14:20 : 20 min
     Sa 5.6.2021 18:27-20:12 : 1 Std. 45 min
     Di 8.6.2021 16:20-16:45 : 25 min
-    Fr 11.6.2021 11:32-
+    Fr 11.6.2021 11:32-14:02 : 2 Std. 30 min
     
 -->
 <input type="submit" name="parse" value="Parsen">
